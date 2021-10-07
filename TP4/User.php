@@ -1,0 +1,67 @@
+<?php
+class User
+{
+    private const LOGIN="toto";
+    private const PASSWORD = 'toto';
+    private string $login;
+    private string $password;
+
+    public static function fromForm() : ? User{
+        $user=null;
+        if((isset($_POST['login']) && $_POST['login']!="") && (isset($_POST['password']) && $_POST['password']!="")) {
+            $user = new User($_POST["login"], $_POST['password']);
+        }
+        return $user;
+    }
+
+    public static function deConnecter(){
+        $_SESSION["utilisateur"]=null;
+    }
+
+    public function __construct(string $login, string $password){
+        $this->login = $login;
+        $this->password = $password;
+    }
+
+    public function verifier() : bool{
+        if(($this->login == self::LOGIN) && ($this->password == self::PASSWORD)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function estConnecter() : bool{
+        if(isset($_SESSION["utilisateur"]) && $_SESSION["utilisateur"]!=null){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getLogin() : string{
+        return $this->login;
+    }
+
+    public function getPassword() : string{
+        return $this->password;
+    }
+
+    public function setLogin(string $login){
+        $this->login = $login;
+    }
+
+    public function setPassword(string $password){
+        $this->password = $password;
+    }
+
+    public function connecter(){
+        $_SESSION["utilisateur"] = $this;
+    }
+
+    public function __toString() : string{
+        return "login: ".$this->getLogin().", password: ".$this->getPassword()."";
+    }
+}

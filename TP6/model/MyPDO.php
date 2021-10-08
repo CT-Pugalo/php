@@ -6,7 +6,7 @@ class MyPDO {
 
     public static function getInstance() : PDO{
         if(self::$connexion == null){
-            self::$connexion=new PDO("mysql:host=".DB_HOST.";dbname=".DB_Name.";charset=utf8", DB_Login, DB_Password, self::options);
+            self::$connexion=new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME.";charset=utf8", DB_LOGIN, DB_PASSWORD, self::options);
         }
         return self::$connexion;
     }

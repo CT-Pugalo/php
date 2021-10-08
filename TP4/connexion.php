@@ -1,7 +1,7 @@
 <?php
-include 'User.php';
+include 'UserTP4.php';
 session_start();
-$user = User::fromForm();
+$user = UserTP4::fromForm();
 if($user->verifier()) {
     $user->connecter();
 }else if(! $user->estConnecter()){

@@ -1,6 +1,6 @@
 <?php
-include 'UserModel.php';
-class User {
+include "UserModel.php";
+class Users {
     private int $id;
     private string $login;
     private string $password;
@@ -13,12 +13,12 @@ class User {
         if(isset($_SESSION['utilisateur']) && $_SESSION['utilisateur']!=null){
             $bool=true;
         }
-        return false;
+        return $bool;
     }
-    public static function fromForm() : ? User{
+    public static function fromForm() : ? Users{
         $user=null;
         if((isset($_POST['login']) && $_POST['login']!="") && (isset($_POST['password']) && $_POST['password']!="")) {
-            $user = new User($_POST["login"], $_POST['password']);
+            $user = new Users($_POST["login"], $_POST['password']);
         }
         return $user;
     }
@@ -71,7 +71,11 @@ class User {
     }
 
     public function connecter(){
-        $_SESSION['utilisateur']=$this;
+        $this->setId(UserModel::getID($this));
+        $table = ['id' => $this->id, 'login' => $this->login, 'password' => $this->password];
+        $_SESSION['utilisateur'] = $table;
+        var_dump($_SESSION['utilisateur']);
+        var_dump($_SESSION);
     }
 
     public function check() : bool{

@@ -1,10 +1,10 @@
 <?php
-include "MyPDO.php";
+include "MyPpo.php";
 $sql=<<<SQL
 SELECT * FROM USERS;
 SQL;
 
-$bd = MyPDO::getInstance();
+$bd = MyPdo::getInstance();
 
 if($requete = $bd->prepare($sql)){
     if($requete->execute()){

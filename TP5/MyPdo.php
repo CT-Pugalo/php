@@ -1,6 +1,6 @@
 <?php
-include "config/DBConfig.php";
-class MyPDO {
+include "config/DBconfig.php";
+class MyPdo {
     private static ?PDO $connexion = NULL;
     private const options=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC];
     public static function getInstance():PDO{

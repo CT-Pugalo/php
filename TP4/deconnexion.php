@@ -1,7 +1,7 @@
 <?php
-    include 'User.php';
+    include 'UserTP4.php';
     session_start();
-    User::deConnecter();
+    UserTP4::deConnecter();
     $_SESSION["message"] = "Vous etes deconnecter";
     header("Location: index.php");
     exit();

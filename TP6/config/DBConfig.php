@@ -1,5 +1,5 @@
 <?php
-define("DB_HOST", "localhost");
-define("DB_NAME", "actualite");
-define("DB_LOGIN", "root");
-define("DB_PASSWORD", "root");
+const DB_HOST = "localhost";
+const DB_NAME = "actualite";
+const DB_LOGIN = "root";
+const DB_PASSWORD = "root";

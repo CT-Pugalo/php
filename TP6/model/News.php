@@ -83,11 +83,21 @@ class News {
     public function setTitre(string $titre): void {
         $this->titre = $titre;
     }
-    public static function fromForm() : ? News{
-        $news=null;
-        if((isset($_POST['titre']) && $_POST['titre']!="") && (isset($_POST['contenue']) && $_POST['contenue']!="") && (isset($_POST['Date']) && $_POST['Date']!="")) {
+
+    public static function fromForm(): ?News {
+        $news = null;
+        if ((isset($_POST['titre']) && $_POST['titre'] != "") && (isset($_POST['contenue']) && $_POST['contenue'] != "") && (isset($_POST['Date']) && $_POST['Date'] != "")) {
             $news = new News($_POST["idN"], $_POST["titre"], $_POST['contenue'], $_POST['Date'], $_POST['IdU']);
         }
         return $news;
+    }
+
+    public function afficher() {
+        echo <<<HTML
+            <p><h1><strong>{$this->titre}</strong></h1></p>
+            <p><h2>{$this->contenu}</h2></p>
+            <p><h4>{$this->date}</h4></p>
+HTML;
+
     }
 }

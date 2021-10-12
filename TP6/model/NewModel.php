@@ -1,14 +1,17 @@
 <?php
+
+require_once "Users.php";
 require_once "MyPDO.php";
+
 class NewModel {
     /*start CRUD*/
-    public static function Create(News $news) : bool {
+    public static function Create(News $news): bool {
         $bool = false;
         $db = MyPDO::getInstance();
         $titre = $news->getTitre();
         $contenue = $news->getContenu();
         $idU = $news->getIdU();
-        $date=$news->getDate();
+        $date = $news->getDate();
 
         $sql = <<<SQL
             INSERT INTO news(Titre, Contenu, Date, IdU) VALUES (:titre, :contenu, :Date, (SELECT Idu FROM utilisateurs WHERE IdU=:Id));
@@ -20,6 +23,8 @@ SQL;
             $requete->bindParam(":Id", $idU);
             if ($requete->execute()) {
                 $bool = true;
+                $id = $requete = $db->query("SELECT LAST_INSERT_ID()");
+                $news->setId($id);
             }
 
         }
@@ -88,11 +93,12 @@ SQL;
 
 
     public static function fromArray(array $liste): ?News {
+        $news = null;
         if (count($liste) == 5) {
-            return new News($liste['Titre'], $liste['Contenu'], $liste['Date'], $liste['IdU']);
-        } else {
-            return null;
+            $news = new News($liste['Titre'], $liste['Contenu'], $liste['Date'], $liste['Idu']);
+            $news->setId($liste['Idn']);
         }
+        return $news;
     }
 
     public static function getAll(): array {
@@ -110,5 +116,95 @@ SQL;
             }
         }
         return $news;
+    }
+
+    public static function getAllFromSince($user = 0, string $date = ""): array {
+        if ($date != "") {
+            $date = explode('-', $date);
+            $date = $date[0] . "-" . $date[2] . "-" . $date[1];
+        }
+        $user = intval($user);
+        $news = array();
+        $bd = MyPDO::getInstance();
+        if ($user != 0 && $date != "") { //les 2 sont specifier
+            $sql = <<<SQL
+                SELECT Idn FROM news INNER JOIN utilisateurs as u ON news.IdU = u.Idu AND u.Idu = :Idu WHERE Date > :date ORDER BY Date DESC LIMIT 10 ;
+            SQL;
+            if ($requete = $bd->prepare($sql)) {
+                $requete->bindParam(":Idu", $user);
+                $requete->bindParam(":date", $date);
+                if ($requete->execute()) {
+                    if ($reponses = $requete->fetchAll()) {
+                        foreach ($reponses as $reponse) {
+                            $reponse = NewModel::Read($reponse['Idn']);
+                            array_push($news, $reponse);
+                        }
+                    }
+                }
+            }
+        } else if ($user != 0 && $date == "") { //l'utilisateur est specifier
+            $sql = <<<SQL
+                SELECT Idn FROM news WHERE IdU = :id ORDER BY Date DESC LIMIT 10;
+            SQL;
+            if ($requete = $bd->prepare($sql)) {
+                $requete->bindParam(":id", $user);
+                if ($requete->execute()) {
+                    if ($reponses = $requete->fetchAll()) {
+                        foreach ($reponses as $reponse) {
+                            $reponse = NewModel::Read($reponse['Idn']);
+                            array_push($news, $reponse);
+                        }
+                    }
+                }
+            }
+        } else if ($user == 0 && $date != "") { //la date est specifier
+            $sql = <<<SQL
+                SELECT Idn, Titre, Contenu, Date, news.Idu FROM news WHERE Date >= :date ORDER BY Date DESC LIMIT 10;
+            SQL;
+            if ($requete = $bd->prepare($sql)) {
+                $requete->bindParam(":date", $date);
+                if ($requete->execute()) {
+                    if ($reponses = $requete->fetchAll()) {
+                        foreach ($reponses as $reponse) {
+                            $reponse = NewModel::Read($reponse['Idn']);
+                            array_push($news, $reponse);
+                        }
+                    }
+                }
+            }
+        } else if ($user == 0 && $date == "") { //aucun est specifier
+            $sql = <<<SQL
+                SELECT Idn FROM news ORDER BY Date DESC LIMIT 10;
+            SQL;
+            if ($requete = $bd->prepare($sql)) {
+                if ($requete->execute()) {
+                    if ($reponses = $requete->fetchAll()) {
+                        foreach ($reponses as $reponse) {
+                            $reponse = NewModel::Read($reponse['Idn']);
+                            array_push($news, $reponse);
+                        }
+                    }
+                }
+            }
+        }
+        return $news;
+    }
+
+    public static function getUser(News $news): ?Users {
+        $db = MyPDO::getInstance();
+        $sql = <<<SQL
+            SELECT * FROM utilisateurs INNER JOIN news ON news.IdU=utilisateurs.Idu AND news.Idn=:Idn;
+SQL;
+        $user = null;
+        if ($requete = $db->prepare($sql)) {
+            $Idn = $news->getId();
+            $requete->bindParam(":Idn", $Idn);
+            if ($requete->execute()) {
+                if ($reponse = $requete->fetch()) {
+                    $user = UserModel::Read($reponse['Idu']);
+                }
+            }
+        }
+        return $user;
     }
 }

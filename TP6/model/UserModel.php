@@ -36,10 +36,8 @@ SQL;
                 $bool = true;
                 $requete=$db->query("SELECT LAST_INSERT_ID()");
                 $reponse=$requete->fetch();
-                var_dump($reponse);
                 $user->setId($reponse['LAST_INSERT_ID()']);
             }
-
         }
         return $bool;
     }
@@ -55,6 +53,7 @@ SQL;
             if ($requete->execute()) {
                 if ($reponse = $requete->fetch()) {
                     $user = self::fromArray($reponse);
+                    $user->setId($id);
                 }
             }
         }
@@ -98,22 +97,43 @@ SQL;
         }
         return $bool;
     }
+
     /*end CRUD*/
 
-    public static function fromArray(array $liste) : ?Users{
-        $user=null;
-        if(count($liste)==3){
-            $user=new Users($liste['login'], $liste['password']);
+    public static function getAll(): array {
+        $users = array();
+        $bd = MyPDO::getInstance();
+        $sql = <<<SQL
+            SELECT Idu FROM utilisateurs;
+SQL;
+        if ($requete = $bd->prepare($sql)) {
+            if ($requete->execute()) {
+                if ($reponses = $requete->fetchAll()) {
+                    foreach ($reponses as $reponse) {
+                        $user = UserModel::Read($reponse['Idu']);
+                        $user->setId($reponse['Idu']);
+                        array_push($users, $user);
+                    }
+                }
+            }
+        }
+        return $users;
+    }
+
+    public static function fromArray(array $liste): ?Users {
+        $user = null;
+        if (count($liste) == 3) {
+            $user = new Users($liste['Login'], $liste['MotDePasse']);
             $user->setId(self::getID($user));
         }
         return $user;
     }
 
-    public static function checkPassword(Users $user) : bool{
-        $db=MyPDO::getInstance();
-        $bool=false;
-        $login=$user->getLogin();
-        $sql=<<<SQL
+    public static function checkPassword(Users $user): bool {
+        $db = MyPDO::getInstance();
+        $bool = false;
+        $login = $user->getLogin();
+        $sql = <<<SQL
             SELECT MotDePasse FROM utilisateurs WHERE Login=:login;
 SQL;
         if($requete=$db->prepare($sql)){

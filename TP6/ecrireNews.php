@@ -5,7 +5,7 @@ if (!Users::estConnecter()) {
 }
 ?>
 <form method="post" action="nouvelleNews.php">
-    <input type="hidden" name="idu" value="<?php echo $_SESSION['utilisateur']['id'] ?>"/>
+    <input type="hidden" name="idu" value="<?php echo $_SESSION['utilisateur']->getId() ?>">
     <label>
         Titre
         <input name="Titre" type="text" placeholder="Titre">

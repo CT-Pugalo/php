@@ -8,7 +8,7 @@ if (!Users::estConnecter()) {
     <a href="register.php">Register</a>
     <?php
 } else {
-    $user = new Users($_SESSION['utilisateur']['login'], $_SESSION['utilisateur']['password']);
+    $user = $_SESSION['utilisateur'];
     echo "{$user->getLogin()} ";
     echo "<a href=' deconnection.php'>Deconnection</a>";
 }

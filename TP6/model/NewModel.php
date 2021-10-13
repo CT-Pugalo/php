@@ -119,10 +119,10 @@ SQL;
     }
 
     public static function getAllFromSince($user = 0, string $date = ""): array {
-        if ($date != "") {
+        /*if ($date != "") {
             $date = explode('-', $date);
             $date = $date[0] . "-" . $date[2] . "-" . $date[1];
-        }
+        }*/
         $user = intval($user);
         $news = array();
         $bd = MyPDO::getInstance();

@@ -20,5 +20,5 @@ if($_POST['bt']=="con") {
         }
     }
 }
-header("Location: " . "../index.php");
+header("Location: " . "index.php");
 exit();

@@ -72,10 +72,7 @@ class Users {
 
     public function connecter(){
         $this->setId(UserModel::getID($this));
-        $table = ['id' => $this->id, 'login' => $this->login, 'password' => $this->password];
-        $_SESSION['utilisateur'] = $table;
-        var_dump($_SESSION['utilisateur']);
-        var_dump($_SESSION);
+        $_SESSION['utilisateur'] = $this;
     }
 
     public function check() : bool{

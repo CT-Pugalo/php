@@ -14,9 +14,6 @@ if (!Users::estConnecter()) {
         Contenu
         <textarea name="Contenu"></textarea>
     </label>
-    <label>
-        Date
-        <input name="Date" type="date" placeholder="Titre">
-    </label>
+    <input name="Date" type="hidden" value=" <?php echo date("Y-m-d") ?> ">
     <button type="submit">Envoyer</button>
 </form>

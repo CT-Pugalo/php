@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreNewsRequest;
 use Illuminate\Http\Request;
+use App\Models\News;
 
 class NewsController extends Controller
 {
@@ -13,7 +15,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $newsList = NewsContr::orderBy('date', 'desc')->take(10)->get();
+        $newsList = News::orderBy('date', 'desc')->take(10)->get();
         return view('news.list', ['newsList' => $newsList]);
     }
 
@@ -24,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
@@ -33,9 +35,12 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreNewsRequest $request)
     {
-        //
+        $request->validated();
+        $news = News::create($request->input());
+        $news->save();
+        return redirect()->route('news.show', ['news' => $news]);
     }
 
     /**
@@ -46,7 +51,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('news.show', ['news' => News::findOrFail($id)]);
     }
 
     /**
@@ -57,19 +62,21 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('news.edit', ['news' => News::findOrFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\StoreNewsRequest  $request
+     * @param App\Models\News $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreNewsRequest $request, News $news)
     {
-        //
+        $request->validated();
+        $news->update($request->input());
+        return redirect()->route('news.show', ['news' => $news]);
     }
 
     /**
@@ -80,6 +87,8 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::findOrFail($id);
+        $news->delete();
+        return redirect()->route('news.index');
     }
 }

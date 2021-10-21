@@ -23,8 +23,9 @@ class NewsFactory extends Factory
     {
         return [
             'title' => $this->faker->realText(20, 1),
-            'message' => $this->faker->realText(200, 2),
-            'date' => $this->faker->date('Y-m-d')
+            'message' => $this->faker->realText(500, 2),
+            'date' => $this->faker->dateTimeBetween('-1 years', 'now', 'Europe/Paris')
         ];
     }
+
 }

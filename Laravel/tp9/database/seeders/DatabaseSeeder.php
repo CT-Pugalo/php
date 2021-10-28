@@ -13,7 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+<<<<<<< Updated upstream
         $this->call(UserSeeder::class, NewsSeeder::class);
         $this->call(NewsSeeder::class);
+=======
+        // \App\Models\User::factory(10)->create();
+>>>>>>> Stashed changes
     }
 }

@@ -11,12 +11,19 @@
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+<<<<<<< Updated upstream
         "livewire/livewire": "^2.5"
+=======
+        "laravel/ui": "^3.3"
+>>>>>>> Stashed changes
     },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+<<<<<<< Updated upstream
         "laravel/jetstream": "^2.4",
+=======
+>>>>>>> Stashed changes
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^5.10",

@@ -10,7 +10,11 @@ class Handler extends ExceptionHandler
     /**
      * A list of the exception types that are not reported.
      *
+<<<<<<< Updated upstream
      * @var array
+=======
+     * @var string[]
+>>>>>>> Stashed changes
      */
     protected $dontReport = [
         //
@@ -19,7 +23,11 @@ class Handler extends ExceptionHandler
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
+<<<<<<< Updated upstream
      * @var array
+=======
+     * @var string[]
+>>>>>>> Stashed changes
      */
     protected $dontFlash = [
         'current_password',

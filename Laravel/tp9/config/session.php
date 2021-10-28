@@ -18,7 +18,11 @@ return [
     |
     */
 
+<<<<<<< Updated upstream
     'driver' => env('SESSION_DRIVER', 'database'),
+=======
+    'driver' => env('SESSION_DRIVER', 'file'),
+>>>>>>> Stashed changes
 
     /*
     |--------------------------------------------------------------------------

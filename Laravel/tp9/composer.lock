@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< Updated upstream
     "content-hash": "15cd057d648c52d4f4b8900a2473c7d4",
+=======
+    "content-hash": "4e38664dc2e1313269ea0f10ec8cbadf",
+>>>>>>> Stashed changes
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1322,6 +1326,67 @@
             "time": "2021-09-28T15:47:34+00:00"
         },
         {
+<<<<<<< Updated upstream
+=======
+            "name": "laravel/ui",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "07d725813350c695c779382cbd6dac0ab8665537"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/07d725813350c695c779382cbd6dac0ab8665537",
+                "reference": "07d725813350c695c779382cbd6dac0ab8665537",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.42",
+                "illuminate/filesystem": "^8.42",
+                "illuminate/support": "^8.42",
+                "illuminate/validation": "^8.42",
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v3.3.0"
+            },
+            "time": "2021-05-25T16:45:33+00:00"
+        },
+        {
+>>>>>>> Stashed changes
             "name": "league/commonmark",
             "version": "2.0.2",
             "source": {
@@ -1665,6 +1730,7 @@
             "time": "2021-09-25T08:23:19+00:00"
         },
         {
+<<<<<<< Updated upstream
             "name": "livewire/livewire",
             "version": "v2.7.2",
             "source": {
@@ -1737,6 +1803,8 @@
             "time": "2021-10-20T02:27:35+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "monolog/monolog",
             "version": "2.3.5",
             "source": {
@@ -5517,6 +5585,7 @@
     ],
     "packages-dev": [
         {
+<<<<<<< Updated upstream
             "name": "bacon/bacon-qr-code",
             "version": "2.0.4",
             "source": {
@@ -5617,6 +5686,8 @@
             "time": "2020-10-02T16:03:48+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "doctrine/instantiator",
             "version": "1.4.0",
             "source": {
@@ -6068,6 +6139,7 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+<<<<<<< Updated upstream
             "name": "jaybizzle/crawler-detect",
             "version": "v1.2.107",
             "source": {
@@ -6332,6 +6404,8 @@
             "time": "2021-10-12T15:29:44+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "laravel/sail",
             "version": "v1.12.2",
             "source": {
@@ -6392,6 +6466,7 @@
             "time": "2021-10-26T21:37:54+00:00"
         },
         {
+<<<<<<< Updated upstream
             "name": "mobiledetect/mobiledetectlib",
             "version": "2.8.37",
             "source": {
@@ -6454,6 +6529,8 @@
             "time": "2021-02-19T21:22:57+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "mockery/mockery",
             "version": "1.4.4",
             "source": {
@@ -6671,6 +6748,7 @@
             "time": "2021-09-20T15:06:32+00:00"
         },
         {
+<<<<<<< Updated upstream
             "name": "paragonie/constant_time_encoding",
             "version": "v2.4.0",
             "source": {
@@ -6738,6 +6816,8 @@
             "time": "2020-12-06T15:14:20+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -7497,6 +7577,7 @@
             "time": "2021-09-25T07:38:51+00:00"
         },
         {
+<<<<<<< Updated upstream
             "name": "pragmarx/google2fa",
             "version": "8.0.0",
             "source": {
@@ -7549,6 +7630,8 @@
             "time": "2020-04-05T10:47:18+00:00"
         },
         {
+=======
+>>>>>>> Stashed changes
             "name": "sebastian/cli-parser",
             "version": "1.0.1",
             "source": {

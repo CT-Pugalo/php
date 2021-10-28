@@ -32,7 +32,7 @@ class NewsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\StoreNewsRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreNewsRequest $request)

@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '6702cb6bca69dd3ff47e0faa31c86eaf9af0833f',
+        'reference' => '31c8945bf1dbbf4352f14477fca3fba20affacad',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '6702cb6bca69dd3ff47e0faa31c86eaf9af0833f',
+            'reference' => '31c8945bf1dbbf4352f14477fca3fba20affacad',
             'dev_requirement' => false,
         ),
         'barryvdh/laravel-debugbar' => array(

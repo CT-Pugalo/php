@@ -16,8 +16,12 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('/');
 
 Route::get('auth/login', 'App\Http\Controllers\LoginController@login')->name('auth.login');
+Route::get('auth/register', 'App\Http\Controllers\LoginController@register')->name('auth.register');
+Route::post('auth/registration', 'App\Http\Controllers\LoginController@registration')->name('auth.registration');
+Route::post('auth/signIn', 'App\Http\Controllers\LoginController@signIn')->name('auth.signIn');
+Route::get('auth/logout', 'App\Http\Controllers\LoginController@logOut')->name('auth.logout');
 
 Route::resource('user', UserController::class);
